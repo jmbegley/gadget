@@ -1,3 +1,7 @@
+# Gadget
+
+[![Build Status](https://travis-ci.org/jmbegley/gadget.svg?branch=master)](https://travis-ci.org/jmbegley/gadget)
+
 Gadget is the Globally applicable Area Disaggregated General Ecosystem Toolbox.
 
 Welcome to the Gadget development repository. This will eventually contain all the information you ever wanted to know about Gadget, but were afraid to ask. For the time being, however, the information is a bit sparse but we hope that it will grow quickly.
