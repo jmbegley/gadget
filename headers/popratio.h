@@ -10,9 +10,14 @@
 class PopRatio {
 public:
   /**
-   * \brief This is the PopRatio constructor
+   * \brief This is the default PopRatio constructor
    */
   PopRatio() { N = NULL; R = 0.0; };
+  /**
+   * \brief This is the PopRatio constructor that creates a copy of an existing PopRatio
+   * \param initial is the PopRatio to copy
+   */
+  PopRatio(const PopRatio& initial);
   /**
    * \brief This is the PopRatio destructor
    */

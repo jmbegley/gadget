@@ -10,9 +10,14 @@
 class PopInfo {
 public:
   /**
-   * \brief This is the PopInfo constructor
+   * \brief This is the default PopInfo constructor
    */
   PopInfo() { N = 0.0; W = 0.0; };
+  /**
+   * \brief This is the PopInfo constructor that creates a copy of an existing PopInfo
+   * \param initial is the PopInfo to copy
+   */
+  PopInfo(const PopInfo& initial) { N = initial.N; W = initial.W; };
   /**
    * \brief This is the PopInfo destructor
    */

@@ -73,7 +73,7 @@ private:
    * \param numlen is the number of length groups that the likelihood data covers
    */
   void readStatisticsData(CommentStream& infile, const TimeClass* TimeInfo,
-                          int numarea, int numage, int numlen);
+    int numarea, int numage, int numlen);
   /**
    * \brief This function will calculate the likelihood score for the current timestep based on a sum of squares function
    * \return likelihood score

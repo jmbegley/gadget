@@ -52,7 +52,7 @@ using namespace std;
 #endif
 
 /* Also defined are some of the constants used by Gadget */
-const int MaxStrLength = 1025;                 /* 128 + 1 */
+const int MaxStrLength = 1025;                 /* 1Kb + 1 */
 const int LongString = 16385;                  /* 16Kb + 1 */
 const double verybig = 1e+10;
 const double rathersmall = 1e-10;

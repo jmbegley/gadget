@@ -7,7 +7,6 @@
 
 extern Ecosystem* EcoSystem;
 
-
 void StockVariable::read(CommentStream& infile) {
 
   int i;

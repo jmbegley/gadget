@@ -63,8 +63,6 @@ void SuitFuncPtrVector::readSuitFunction(CommentStream& infile,
     tempFunc = new StraightUnboundedSuitFunc();
 
   } else if ((strcasecmp(suitname, "newexponentiall50") == 0) || (strcasecmp(suitname, "expsuitfuncl50") == 0) || (strcasecmp(suitname, "exponentiall50") == 0)){
-    //    handle.logFileMessage(LOGWARN, "\nNote that this exponentiall50 has had a factor of 4 removed from the source code");
-
     tempFunc = new ExpSuitFuncL50();
 
   } else if ((strcasecmp(suitname, "andersensuitfunc") == 0) || (strcasecmp(suitname, "andersen") == 0)) {
@@ -82,9 +80,6 @@ void SuitFuncPtrVector::readSuitFunction(CommentStream& infile,
   } else if (strcasecmp(suitname, "andersenfleet") == 0) {
     tempFunc = new AndersenFleetSuitFunc();
 
-    /*  } else if ((strcasecmp(suitname, "expsuitfuncl50") == 0) || (strcasecmp(suitname, "exponentiall50") == 0)) {
-    handle.logFileMessage(LOGFAIL, "\nThe exponentiall50 suitability function is no longer supported\nUse the newexponentiall50 suitability function instead\nNote that this function has had a factor of 4 removed from the source code");
-    */
   } else if (strcasecmp(suitname, "inverse") == 0) {
     handle.logFileMessage(LOGFAIL, "\nThe inverse suitability function is no longer supported\nUse the newinverse suitability function instead\nNote that this function has had a factor of 4 removed from the source code");
 

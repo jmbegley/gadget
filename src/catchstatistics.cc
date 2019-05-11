@@ -12,7 +12,7 @@
 #include "global.h"
 
 CatchStatistics::CatchStatistics(CommentStream& infile, const AreaClass* const Area,
-                 const TimeClass* const TimeInfo, double weight, const char* name)
+  const TimeClass* const TimeInfo, double weight, const char* name)
   : Likelihood(CATCHSTATISTICSLIKELIHOOD, weight, name), alptr(0) {
 
   char text[MaxStrLength];
@@ -57,7 +57,7 @@ CatchStatistics::CatchStatistics(CommentStream& infile, const AreaClass* const A
   else if ((strcasecmp(functionname, "weightgivenvarlen") == 0) || (strcasecmp(functionname, "weightgivenstddevlen") == 0))
     functionnumber = 6;
   else if ((strcasecmp(functionname, "weightnovarlen") == 0) || (strcasecmp(functionname, "weightnostddevlen") == 0))
-    functionnumber = 7;  
+    functionnumber = 7;
   else
     handle.logFileMessage(LOGFAIL, "\nError in catchstatistics - unrecognised function", functionname);
 
@@ -72,7 +72,7 @@ CatchStatistics::CatchStatistics(CommentStream& infile, const AreaClass* const A
   datafile.clear();
 
   //read optionally from length aggregation file
-  if ((functionnumber==6) || (functionnumber==7)){
+  if ((functionnumber == 6) || (functionnumber == 7)){
     readWordAndValue(infile, "lenaggfile", aggfilename);
     datafile.open(aggfilename, ios::in);
     handle.checkIfFailure(datafile, aggfilename);
@@ -81,7 +81,7 @@ CatchStatistics::CatchStatistics(CommentStream& infile, const AreaClass* const A
     handle.Close();
     datafile.close();
     datafile.clear();
-  } 
+  }
 
   //read in age aggregation from file
   readWordAndValue(infile, "ageaggfile", aggfilename);
@@ -95,9 +95,8 @@ CatchStatistics::CatchStatistics(CommentStream& infile, const AreaClass* const A
   
   //Must change from outer areas to inner areas.
   for (i = 0; i < areas.Nrow(); i++)
-    for (j = 0; j < areas.Ncol(i); j++){
+    for (j = 0; j < areas.Ncol(i); j++)
       areas[i][j] = Area->getInnerArea(areas[i][j]);
-    }
 
   //read in the fleetnames
   i = 0;
@@ -152,7 +151,7 @@ CatchStatistics::CatchStatistics(CommentStream& infile, const AreaClass* const A
 }
 
 void CatchStatistics::readStatisticsData(CommentStream& infile,
-                     const TimeClass* TimeInfo, int numarea, int numage, int numlen) {
+  const TimeClass* TimeInfo, int numarea, int numage, int numlen) {
 
   int i, year, step;
   double tmpnumber, tmpmean, tmpstddev;
@@ -192,7 +191,6 @@ void CatchStatistics::readStatisticsData(CommentStream& infile,
     handle.logFileMessage(LOGFAIL, "wrong number of columns in inputfile - should be 7");
   else if ((!readvar) && (countColumns(infile) != 6))
     handle.logFileMessage(LOGFAIL, "wrong number of columns in inputfile - should be 6");
-
 
   year = step = count = reject = 0;
   while (!infile.eof()) {
@@ -359,7 +357,6 @@ CatchStatistics::~CatchStatistics() {
     delete modelStdDev[i];
   delete[] functionname;
   delete LgrpDiv;
-
 }
 
 void CatchStatistics::Reset(const Keeper* const keeper) {
@@ -501,7 +498,6 @@ void CatchStatistics::setFleetsAndStocks(FleetPtrVector& Fleets, StockPtrVector&
   aggregator = new FleetPreyAggregator(fleets, stocks, LgrpDiv, areas, ages, overconsumption);
 }
 
-
 void CatchStatistics::addLikelihood(const TimeClass* const TimeInfo) {
 
   if ((!(AAT.atCurrentTime(TimeInfo))) || (isZero(weight)))
@@ -526,7 +522,6 @@ void CatchStatistics::addLikelihood(const TimeClass* const TimeInfo) {
   likelihood += l;
   if (handle.getLogLevel() >= LOGMESSAGE)
     handle.logMessage(LOGMESSAGE, "The likelihood score for this component on this timestep is", l);
-
 }
 
 double CatchStatistics::calcLikSumSquares() {
@@ -563,7 +558,6 @@ double CatchStatistics::calcLikSumSquares() {
           lik = simdiff * simdiff * (*numbers[timeindex])[area][lengr] / simvar;
           likelihoodValues[timeindex][area] += lik;
         }
-
       }
       total += likelihoodValues[timeindex][area];
     }
@@ -571,7 +565,7 @@ double CatchStatistics::calcLikSumSquares() {
   } else {
     for (area = 0; area < areas.Nrow(); area++) {
       likelihoodValues[timeindex][area] = 0.0;
-      
+
       for (age = (*alptr)[area].minAge(); age <= (*alptr)[area].maxAge(); age++) {
         switch (functionnumber) {
         case 1:
@@ -615,7 +609,6 @@ double CatchStatistics::calcLikSumSquares() {
     }
   }
   return total;
-
 }
 
 void CatchStatistics::printLikelihood(ofstream& outfile, const TimeClass* const TimeInfo) {

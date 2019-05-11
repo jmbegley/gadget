@@ -4,7 +4,7 @@
 #include "lengthgroup.h"
 #include "popinfovector.h"
 #include "popinfoindexvector.h"
-#include "agebandmatrixptrvector.h"
+#include "agebandmatrix.h"
 
 /**
  * \class PopStatistics
@@ -29,7 +29,7 @@ public:
   void calcStatistics(const PopInfoIndexVector& pop, const LengthGroupDivision* const lgrpdiv, int calcweight = 1);
 /**
    * \brief This function will calculate the standard statistics for a given population
-   * \param agelenum is the  the AgeBandMatrix that specifies the catch
+   * \param agelenum is the AgeBandMatrix that specifies the catch
    * \param lengr is the Length group vector for which mean weight should be calculated
    */
   void calcStatistics(const AgeBandMatrix& agelenum, int lengr);

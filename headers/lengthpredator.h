@@ -13,11 +13,12 @@ public:
    * \brief This is the LengthPredator constructor
    * \param givenname is the name of the predator
    * \param Areas is the IntVector of areas that the predator lives on
+   * \param TimeInfo is the TimeClass for the current model
    * \param keeper is the Keeper for the current model
    * \param multscaler is the Formula that can be used to scale the biomass consumed
    */
   LengthPredator(const char* givenname, const IntVector& Areas,
-		 const TimeClass* const TimeInfo,Keeper* const keeper,Formula multscaler);
+    const TimeClass* const TimeInfo, Keeper* const keeper, Formula multscaler);
   /**
    * \brief This is the default LengthPredator destructor
    */
@@ -33,7 +34,13 @@ public:
    * \return multi
    */
   double getMultScaler() const { return multi; };
-  virtual void setTimeMultiplier(const TimeClass* const TimeInfo, int quotastep,double value);  //
+  /**
+   * \brief This function will set the time multiplier values (used by the QuotaPredator)
+   * \param TimeInfo is the TimeClass for the current model
+   * \param quotastep is the time step for the quota
+   * \param value is the time multiplier value
+   */
+  virtual void setTimeMultiplier(const TimeClass* const TimeInfo, int quotastep, double value);
   /**
    * \brief This function will reset the predation information
    * \param TimeInfo is the TimeClass for the current model
@@ -44,7 +51,10 @@ protected:
    * \brief This is the multiplicative constant that can be used to scale the biomass consumed
    */
   Formula multi;
-  DoubleVector timeMultiplier; //To be set by the quota class
+  /**
+   * \brief This is the DoubleVector of time multiplier values (only used by QuotaPredator)
+   */
+  DoubleVector timeMultiplier;
 };
 
 #endif

@@ -124,19 +124,21 @@ public:
    */
   virtual const LengthGroupDivision* getLengthGroupDiv() const = 0;
   /**
-   * \brief This is a multiplier set in lengthpredator.  
+   * \brief This will set the time multiplier (used by QuotaPredator)
+   * \param TimeInfo is the TimeClass for the current model
+   * \param quotastep is the time step on which the quota is calculated
+   * \param value is the time multipler
    */
-  virtual void setTimeMultiplier(const TimeClass* const TimeInfo, int quotastep,double value){};
+  virtual void setTimeMultiplier(const TimeClass* const TimeInfo, int quotastep, double value) {};
   /**
    * \brief This will return the number of prey stocks that the predator will consume
    * \return number of preys
    */
+  int numPreys() const { return preys.Size(); };
   /**
    * \brief This will initialise the preys that will be consumed by the predator
    */
   virtual void Initialise() { suitable->Initialise(this); };
-
-  int numPreys() const { return preys.Size(); };
   /**
    * \brief This will return a given prey
    * \param i is the index of the prey

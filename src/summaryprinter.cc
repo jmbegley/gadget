@@ -43,7 +43,6 @@ SummaryPrinter::~SummaryPrinter() {
   outfile.clear();
 }
 
-// proglikelihood not working for this printer
 void SummaryPrinter::setLikelihood(LikelihoodPtrVector& likevec) {
   int i;
   for (i = 0; i < likevec.Size(); i++)
@@ -59,10 +58,10 @@ void SummaryPrinter::setLikelihood(LikelihoodPtrVector& likevec) {
       case SURVEYINDICESLIKELIHOOD:
       case UNDERSTOCKINGLIKELIHOOD:
       case BOUNDLIKELIHOOD:
-      case PROGLIKELIHOOD:
       case MIGRATIONPENALTYLIKELIHOOD:
       case MIGRATIONPROPORTIONLIKELIHOOD:
         break;
+      case PROGLIKELIHOOD:
       case TAGLIKELIHOOD:
       case RECSTATISTICSLIKELIHOOD:
         handle.logMessage(LOGWARN, "Warning in summaryprinter - printing incomplete for", like[i]->getName());

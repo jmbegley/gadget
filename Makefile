@@ -1,20 +1,17 @@
 ##########################################################################
 # Common for all architecture and compiler options
 ##########################################################################
-GCCWARNINGS = -Wimplicit -Wreturn-type -Wswitch -Wcomment -Wformat \
+GCCWARNINGS = -Wreturn-type -Wswitch -Wcomment -Wformat -Wuninitialized \
               -Wparentheses -Wpointer-arith -Wcast-qual -Wconversion \
-              -Wreorder -Wwrite-strings -Wsynth -Wchar-subscripts \
-              -Wuninitialized -W -pedantic 
+              -Wreorder -Wwrite-strings -Wsynth -Wchar-subscripts -W -pedantic 
 
-#DEFINE_FLAGS = -D DEBUG -D INTERRUPT_HANDLER -g -O
 ifeq ($(OS),Windows_NT)
-	DEFINE_FLAGS = -D NDEBUG -D INTERRUPT_HANDLER -O3 -I headers/ 
+    DEFINE_FLAGS = -D NDEBUG -D INTERRUPT_HANDLER -O3 -s -I headers/ 
+#    DEFINE_FLAGS = -D DEBUG -D INTERRUPT_HANDLER -O -g -I headers/ 
 else
-	DEFINE_FLAGS = -D NDEBUG -D INTERRUPT_HANDLER -O3 -I headers/ -D NOT_WINDOWS
+    DEFINE_FLAGS = -D NDEBUG -D INTERRUPT_HANDLER -O3 -s -I headers/ -D NOT_WINDOWS
+#    DEFINE_FLAGS = -D DEBUG -D INTERRUPT_HANDLER -O -g -I headers/ -D NOT_WINDOWS
 endif
-#-s
-
-
 
 INC_DIR = ./headers
 SRC_DIR = ./src
@@ -24,7 +21,7 @@ OBJ_DIR = .
 # The name of the final executable (eg gadget-paramin or gadget.exe)
 #GADGET = gadget-paramin
 GADGET = gadget
-GADGETPARA = gadget-para
+#GADGETPARA = gadget-para
 ##########################################################################
 # Pick the appropriate compiler from the following switches
 ##########################################################################
@@ -33,16 +30,16 @@ GADGETPARA = gadget-para
 #LIBDIRS = -L. -L/usr/local/lib
 #LIBRARIES = -lm
 # CXXFLAGSNET = $(GCCWARNINGS) $(DEFINE_FLAGS) -D GADGET_NETWORK
-_OBJECTSNET = $(GADGETINPUT) $(GADGETOBJECTS) $(SLAVEOBJECTS)
-OBJECTSNET = $(patsubst %,$(SRC_DIR)/%,$(_OBJECTSNET))
-_LIBOBJ = $(GADGETINPUT) $(EXTRAINPUT)
-LIBOBJ = $(patsubst %,$(SRC_DIR)/%,$(_LIBOBJ))
+#_OBJECTSNET = $(GADGETINPUT) $(GADGETOBJECTS) $(SLAVEOBJECTS)
+#OBJECTSNET = $(patsubst %,$(SRC_DIR)/%,$(_OBJECTSNET))
+#_LIBOBJ = $(GADGETINPUT) $(EXTRAINPUT)
+#LIBOBJ = $(patsubst %,$(SRC_DIR)/%,$(_LIBOBJ))
 ##########################################################################
 # 2. Linux, Mac, Cgwin or Solaris, without MPI, using g++ compiler
 CXX = g++
 LIBDIRS = -L. -L/usr/local/lib -I $(INC_DIR)
 LIBRARIES = -lm
-CXXFLAGS = $(DEFINE_FLAGS)
+CXXFLAGS = $(GCCWARNINGS) $(DEFINE_FLAGS)
 _OBJECTS = $(GADGETINPUT) $(GADGETOBJECTS)
 OBJECTS = $(patsubst %,$(SRC_DIR)/%,$(_OBJECTS))
 ###########################################################################
@@ -90,9 +87,6 @@ GADGETINPUT = intvector.o doublevector.o charptrvector.o initialinputfile.o \
 
 LDFLAGS = $(CXXFLAGS) $(LIBDIRS) $(LIBRARIES)
 
-
-
-
 gadget	:	$(OBJECTS)
 		$(CXX) -o $(GADGET) $(OBJECTS) $(LDFLAGS) 
 
@@ -112,9 +106,9 @@ EXTRAINPUT = optinfoptrvector.o doublematrix.o runid.o global.o errorhandler.o
 libgadgetinput.a	:	$(LIBOBJ)
 		ar rs libgadgetinput.a $?
 
-gadgetpara :    CXX = mpic++
-gadgetpara : 	CXXFLAGS = $(DEFINE_FLAGS) -D GADGET_NETWORK
-gadgetpara :    $(OBJECTSNET)
+gadgetpara :	CXX = mpic++
+gadgetpara :	CXXFLAGS = $(DEFINE_FLAGS) -D GADGET_NETWORK
+gadgetpara :	$(OBJECTSNET)
 		$(CXX) -o $(GADGETPARA) $(OBJECTSNET) $(LDFLAGS) 
 
 clean	:

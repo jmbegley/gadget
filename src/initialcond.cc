@@ -472,7 +472,6 @@ void InitialCond::Initialise(AgeBandMatrixPtrVector& Alkeys) {
     for (area = 0; area < areas.Size(); area++) {
       minage = initialPop[area].minAge();
       maxage = initialPop[area].maxAge();
-
       for (age = minage; age <= maxage; age++) {
 
         //JMB check that the length data is valid
@@ -619,5 +618,4 @@ void InitialCond::Initialise(AgeBandMatrixPtrVector& Alkeys) {
 
   if (handle.getLogLevel() >= LOGMESSAGE)
     handle.logMessage(LOGMESSAGE, "Calculated initial condition data for stock", this->getName());
-
 }

@@ -23,7 +23,7 @@
 class ProgLikelihood : public Likelihood {
 public:
   /**
-   * \brief This is the default BoundLikelihood contructor
+   * \brief This is the default ProgLikelihood contructor
    * \param infile is the CommentStream to read the likelihood parameters from
    * \param Area is the AreaClass for the current model
    * \param TimeInfo is the TimeClass for the current model
@@ -34,38 +34,54 @@ public:
   ProgLikelihood(CommentStream& infile, const AreaClass* const Area,
     const TimeClass* const TimeInfo, Keeper* const keeper, double weight, const char* name);
   /**
-   * \brief This is the default BoundLikelihood destructor
+   * \brief This is the default ProgLikelihood destructor
    */
-  virtual ~ProgLikelihood() {};
-  // check if anything is needed in the destructor.  
+  virtual ~ProgLikelihood();
   /**
    * \brief This function will calculate the likelihood score for the current model
    * \param TimeInfo is the TimeClass for the current model
-   * \note This function is not used for this likelihood component
    */
   virtual void addLikelihood(const TimeClass* const TimeInfo);
+  /**
+   * \brief This will select the fleets and stocks required to calculate the ProgLikelihood likelihood score
+   * \param Fleets is the FleetPtrVector of all the available fleets
+   * \param Stocks is the StockPtrVector of all the available stocks
+   */
   void setFleetsAndStocks(FleetPtrVector& Fleets, StockPtrVector& Stocks);
-  void Reset(const Keeper* const keeper);
-  void Reset(const TimeClass* const TimeInfo);
-  virtual void PrintLog(ofstream& outfile) const;
-  virtual void Print(ofstream& outfile) const;
-  virtual void printLikelihood(ofstream& outfile,const TimeClass* const TimeInfo);
-
+  /**
+   * \brief This function will reset the ProgLikelihood likelihood information
+   * \param keeper is the Keeper for the current model
+   * \note This function is not used for this likelihood component
+   */
+  void Reset(const Keeper* const keeper) {};
+  /**
+   * \brief This function will reset the ProgLikelihood likelihood information
+   * \param TimeInfo is the TimeClass for the current model
+   */
+  void ResetTime(const TimeClass* const TimeInfo) { asserr.Update(TimeInfo); implerr.Update(TimeInfo); };
+  /**
+   * \brief This function will print the summary ProgLikelihood likelihood information
+   * \param outfile is the ofstream that all the model information gets sent to
+   */
+  virtual void Print(ofstream& outfile) const {};
+  /**
+   * \brief This function will print information from each ProgLikelihood calculation
+   * \param outfile is the ofstream that all the model likelihood information gets sent to
+   * \param TimeInfo is the TimeClass for the current model
+   */
+  virtual void printLikelihood(ofstream& outfile, const TimeClass* const TimeInfo);
 protected:
   void CalcTac(const TimeClass* const TimeInfo);
   void AllocateTac(const TimeClass* const TimeInfo);
   void CalcBiomass(const TimeClass* const TimeInfo);
-  /**
-   * \brief This will select the fleets and stocks required to calculate the StockDistribution likelihood score
-   * \param Fleets is the FleetPtrVector of all the available fleets
-   * \param Stocks is the StockPtrVector of all the available stocks
-   */
 private:
   /**
-   * \brief This is the CharPtrVector of the names of the fleets that the catch will be sent to
+   * \brief This is the CharPtrVector of the names of the fleets
    */
-
   CharPtrVector fleetnames;
+  /**
+   * \brief This is the CharPtrVector of the names of the stocks
+   */
   CharPtrVector stocknames;  // names of stock for example lingimm lingmat
   FormulaVector fleetproportions;  // Proportion of TAC on each fleet
   FleetPtrVector fleets;

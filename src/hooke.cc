@@ -141,7 +141,6 @@
 
 extern Ecosystem* EcoSystem;
 
-
 /* given a point, look for a better one nearby, one coord at a time */
 double OptInfoHooke::bestNearby(DoubleVector& delta, DoubleVector& point, double prevbest, IntVector& param) {
 

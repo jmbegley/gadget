@@ -362,7 +362,7 @@ int SpawnData::isSpawnStepArea(int area, const TimeClass* const TimeInfo) {
 void SpawnData::Reset(const TimeClass* const TimeInfo) {
   int i;
 
-   spawnParameters.Update(TimeInfo);
+  spawnParameters.Update(TimeInfo);
 
   fnProportion->updateConstants(TimeInfo);
   if (fnProportion->didChange(TimeInfo)) {
@@ -439,7 +439,7 @@ double SpawnData::calcSpawnNumber(int age, int len, double number, double weight
       temp = number;
       break;
     default:
-      handle.logMessage(LOGWARN, "Warning in spawner data - unrecognised recruitment function", functionname);
+      handle.logMessage(LOGWARN, "Warning in spawner - unrecognised recruitment function", functionname);
       break;
   }
 
@@ -479,6 +479,7 @@ double SpawnData::calcRecruitNumber(double temp, int inarea) {
       break;
     case 6:
       if (ssb > spawnParameters[1]) {
+        // JMB not sure that we should hardcode the factor of 1.0e4
         total = 1.0e4 * spawnParameters[0];
       } else if (isZero(spawnParameters[1])) {
         handle.logMessage(LOGWARN, "Warning in spawner - spawn parameter is zero");
@@ -488,7 +489,7 @@ double SpawnData::calcRecruitNumber(double temp, int inarea) {
       }
       break;
     default:
-      handle.logMessage(LOGWARN, "Warning in spawner calcrecruit- unrecognised recruitment function", functionname);
+      handle.logMessage(LOGWARN, "Warning in spawner - unrecognised recruitment function", functionname);
       break;
   }
 

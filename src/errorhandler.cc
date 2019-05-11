@@ -1,10 +1,6 @@
 #include "errorhandler.h"
 #include "gadget.h"
 #include "global.h"
-#ifndef GADGET_NETWORK
-//JMB dont access runid on a network run
-#include "runid.h"
-#endif
 
 ErrorHandler::ErrorHandler() {
   files = new StrStack();
