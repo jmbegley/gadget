@@ -23,6 +23,7 @@ void TotalPredator::Eat(int area, const AreaClass* const Area, const TimeClass* 
   int prey, preyl;
   double tmp, wanttoeat;
   int predl = 0;  //JMB there is only ever one length group ...
+
   wanttoeat = prednumber[inarea][predl].N * multi*timeMultiplier[TimeInfo->getTime()] / TimeInfo->numSubSteps();
   totalcons[inarea][predl] = 0.0;
 
