@@ -58,7 +58,7 @@ public:
    * \brief This function will reset the ProgLikelihood likelihood information
    * \param TimeInfo is the TimeClass for the current model
    */
-  void ResetTime(const TimeClass* const TimeInfo) { asserr.Update(TimeInfo); implerr.Update(TimeInfo); };
+  void Reset(const TimeClass* const TimeInfo) { asserr.Update(TimeInfo); implerr.Update(TimeInfo); };
   /**
    * \brief This function will print the summary ProgLikelihood likelihood information
    * \param outfile is the ofstream that all the model information gets sent to

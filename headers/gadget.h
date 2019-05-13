@@ -170,9 +170,8 @@ To maintain version control of the source files, a CVS repository has been set u
 
 Gadget is a program that has been developed on a Unix computing platform, and is regularly compiled and run on machines running versions of Linux, Solaris and Cygwin (a Unix emulator for Microsoft Windows machines, see http://www.cygwin.com for more information).  By regularly compiling and running Gadget on a variety of computing platforms, it is hoped that the source code is compatible with as many computing platforms as possible.  The list of computing platforms, and C++ compilers, that Gadget is regularly tested on is:
 
-  \li Linux (Fedora 9), compiled using \c g++ version 4.3.0
-  \li Linux (Ubuntu 8.04), compiled using \c g++ version 4.2.3
-  \li Linux (Fedora 8), compiled using \c g++ version 4.1.2
+  \li Linux (Fedora 30), compiled using \c g++ version 9.1.1
+  \li Linux (Ubuntu 18.04), compiled using \c g++ version 4.8.4
   \li Cygwin (1.5.25-14), compiled using  \c g++ version 3.4.4-3
 
 */

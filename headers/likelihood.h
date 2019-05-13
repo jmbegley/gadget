@@ -58,7 +58,7 @@ public:
    * \brief This function will reset the likelihood information
    * \param TimeInfo is the TimeClass for the current model
    */
-  virtual void ResetTime(const TimeClass* const TimeInfo) {};
+  virtual void Reset(const TimeClass* const TimeInfo) {};
   /**
    * \brief This function will print the summary likelihood information
    * \param outfile is the ofstream that all the model information gets sent to

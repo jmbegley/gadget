@@ -71,8 +71,8 @@ CatchStatistics::CatchStatistics(CommentStream& infile, const AreaClass* const A
   datafile.close();
   datafile.clear();
 
-  //read optionally from length aggregation file
-  if ((functionnumber == 6) || (functionnumber == 7)){
+  //read in length aggregation from file (if needed)
+  if ((functionnumber == 6) || (functionnumber == 7)) {
     readWordAndValue(infile, "lenaggfile", aggfilename);
     datafile.open(aggfilename, ios::in);
     handle.checkIfFailure(datafile, aggfilename);
@@ -81,18 +81,34 @@ CatchStatistics::CatchStatistics(CommentStream& infile, const AreaClass* const A
     handle.Close();
     datafile.close();
     datafile.clear();
+
+    //JMB - changed to make the reading of overconsumption optional
+    infile >> ws;
+    char c = infile.peek();
+    if ((c == 'a') || (c == 'A')) {
+      //read in age aggregation from file
+      readWordAndValue(infile, "ageaggfile", aggfilename);
+      datafile.open(aggfilename, ios::in);
+      handle.checkIfFailure(datafile, aggfilename);
+      handle.Open(aggfilename);
+      numage = readAggregation(subdata, ages, ageindex);
+      handle.Close();
+      datafile.close();
+      datafile.clear();
+    }
+
+  } else {
+    //read in age aggregation from file
+    readWordAndValue(infile, "ageaggfile", aggfilename);
+    datafile.open(aggfilename, ios::in);
+    handle.checkIfFailure(datafile, aggfilename);
+    handle.Open(aggfilename);
+    numage = readAggregation(subdata, ages, ageindex);
+    handle.Close();
+    datafile.close();
+    datafile.clear();
   }
 
-  //read in age aggregation from file
-  readWordAndValue(infile, "ageaggfile", aggfilename);
-  datafile.open(aggfilename, ios::in);
-  handle.checkIfFailure(datafile, aggfilename);
-  handle.Open(aggfilename);
-  numage = readAggregation(subdata, ages, ageindex);
-  handle.Close();
-  datafile.close();
-  datafile.clear();
-  
   //Must change from outer areas to inner areas.
   for (i = 0; i < areas.Nrow(); i++)
     for (j = 0; j < areas.Ncol(i); j++)
@@ -161,7 +177,7 @@ void CatchStatistics::readStatisticsData(CommentStream& infile,
   strncpy(tmplen, "", MaxStrLength);
   int keepdata, needvar, readvar;
   int timeid, ageid, lenid, areaid, count, reject;
-  
+
   //NK - add cases 6 and 7 (weight at length)
   readvar = 0;
   needvar = 0;
