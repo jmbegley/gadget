@@ -157,7 +157,7 @@ void Predator::readSuitability(CommentStream& infile,
       handle.logFileMessage(LOGFAIL, "Error in predator - unrecognised predator type", this->getType());
       break;
   }
-  
+
   //resize the prey preference vector - used for stockpredators and effortpredators
   preference.resize(suitable->numPreys(), keeper);
 

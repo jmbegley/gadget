@@ -37,7 +37,7 @@ int ActionAtTimes::readFromFile(CommentStream& infile, const TimeClass* const Ti
         infile >> year >> ws;
       else
         infile >> step >> ws;
-        
+
     } else {
       //OK, we are about to read a word that should be 'all'
       infile >> text >> ws;

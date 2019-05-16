@@ -23,7 +23,7 @@ void LengthPredator::Reset(const TimeClass* const TimeInfo) {
     handle.logMessage(LOGWARN, "Warning in lengthpredator - negative value for multiplicative");
 }
 
-// New HB seems to work look better at the timing.  
+// New HB seems to work look better at the timing
 void LengthPredator::setTimeMultiplier(const TimeClass* const TimeInfo, int quotastep, double value) {
   if ((TimeInfo->getTime() + quotastep) <= (TimeInfo->numTotalSteps())) // not go beyond last step
     timeMultiplier[TimeInfo->getTime() + quotastep] = value;

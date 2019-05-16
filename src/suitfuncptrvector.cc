@@ -62,7 +62,7 @@ void SuitFuncPtrVector::readSuitFunction(CommentStream& infile,
   } else if (strcasecmp(suitname, "straightlineunbounded") == 0) {
     tempFunc = new StraightUnboundedSuitFunc();
 
-  } else if ((strcasecmp(suitname, "newexponentiall50") == 0) || (strcasecmp(suitname, "expsuitfuncl50") == 0) || (strcasecmp(suitname, "exponentiall50") == 0)){
+  } else if ((strcasecmp(suitname, "newexponentiall50") == 0) || (strcasecmp(suitname, "expsuitfuncl50") == 0) || (strcasecmp(suitname, "exponentiall50") == 0)) {
     tempFunc = new ExpSuitFuncL50();
 
   } else if ((strcasecmp(suitname, "andersensuitfunc") == 0) || (strcasecmp(suitname, "andersen") == 0)) {

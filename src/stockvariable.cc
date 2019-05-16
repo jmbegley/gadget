@@ -41,7 +41,7 @@ StockVariable::~StockVariable() {
 }
 
 void StockVariable::Update() {
-  int i,j;
+  int i, j;
 
   //JMB need to find the stocks - only need to do this once
   if (stocks.Size() == 0) {

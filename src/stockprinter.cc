@@ -126,7 +126,7 @@ StockPrinter::StockPrinter(CommentStream& infile, const TimeClass* const TimeInf
     outfile << "\n; Printing the following information at the end of each timestep";
   else
     outfile << "\n; Printing the following information at the start of each timestep";
-  
+
   // BTHE compatibility with Rgadget::read.gadget.file
   outfile << "\n; -- data --";
 

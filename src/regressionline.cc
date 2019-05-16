@@ -211,13 +211,13 @@ void LogLinearRegression::storeVectors(const DoubleVector& modData, const Double
     } else if ((modData[i] < verysmall) || (obsData[i] < verysmall)) {
       handle.logMessage(LOGWARN, "Warning in log linear regession - received invalid values");
       //error = 1;
-      if((modData[i] < verysmall)) {
+      if (modData[i] < verysmall) {
         x[l] = -20.0;
       } else {
         x[l] = log(modData[i]);
       }
 
-      if((obsData[i] < verysmall)) {
+      if (obsData[i] < verysmall) {
         y[l] = -20.0;
       } else {
         y[l] = log(obsData[i]);

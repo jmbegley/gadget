@@ -303,7 +303,7 @@ void SpawnData::addSpawnStock(int area, const TimeClass* const TimeInfo) {
 
   //create a length distribution and mean weight for the new stock
   stockParameters.Update(TimeInfo);
- 
+
   if (handle.getLogLevel() >= LOGWARN) {
     if (isZero(stockParameters[1]))
       handle.logMessage(LOGWARN, "Warning in spawner - invalid standard deviation for spawned stock", this->getName());

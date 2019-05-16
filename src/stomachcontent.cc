@@ -1148,7 +1148,7 @@ double SCSimple::calcLikelihood() {
 
       if (!(isZero(scale)))
         tmpdivide = 1.0 / scale;
-      else 
+      else
         tmpdivide = 0.0;
 
       tmplik = 0.0;

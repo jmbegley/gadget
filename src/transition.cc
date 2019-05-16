@@ -7,7 +7,7 @@
 
 Transition::Transition(CommentStream& infile, const IntVector& areas, int Age,
   const LengthGroupDivision* const lgrpdiv, const char* givenname,
-  const TimeClass* const TimeInfo, Keeper* const keeper) 
+  const TimeClass* const TimeInfo, Keeper* const keeper)
   : HasName(givenname), LivesOnAreas(areas), age(Age) {
 
   int i = 0;

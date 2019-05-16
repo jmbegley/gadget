@@ -19,7 +19,7 @@ CatchStatistics::CatchStatistics(CommentStream& infile, const AreaClass* const A
   strncpy(text, "", MaxStrLength);
   int i, j;
   int numarea = 0, numage = 0, numlen = 0;
-  
+
   char datafilename[MaxStrLength];
   char aggfilename[MaxStrLength];
   strncpy(datafilename, "", MaxStrLength);
